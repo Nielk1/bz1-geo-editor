@@ -90,11 +90,18 @@ namespace BZ1GeoEditor
                             {
                                 HighlightColor = true;
                                 break;
+                            }
+                        }
+                    }
 
-                                //HighlightBrightness = Lerp(Color.Red, Color.White, (float)Math.Sin(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds / 100f));
-
-                                //int tmpX = (int)(Math.Sin(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds / 100f) * 64 + 128 + 32);
-                                //HighlightBrightness = Color.FromArgb(tmpX, 0x00, 0x00);
+                    if (tcTabs.SelectedTab == tpUV && lstFacesUV.SelectedItem != null)
+                    {
+                        foreach (FaceListWrapper selectedItem in lstFacesUV.SelectedItems)
+                        {
+                            if (selectedItem.Value.Index == face.Index)
+                            {
+                                HighlightColor = true;
+                                break;
                             }
                         }
                     }
@@ -320,7 +327,7 @@ namespace BZ1GeoEditor
             OpenGL gl = openGLControl.OpenGL;
 
             //  Set the clear color.
-            gl.ClearColor(0, 0, 0, 0);
+            gl.ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
             gl.Enable(OpenGL.GL_COLOR_MATERIAL);
             gl.Enable(OpenGL.GL_TEXTURE_2D);
@@ -564,7 +571,9 @@ namespace BZ1GeoEditor
                         FaceBranchMax = 0;
 
                         lstFaces.Items.Clear();
+                        lstFacesUV.Items.Clear();
                         lstFaces.BeginUpdate();
+                        lstFacesUV.BeginUpdate();
                         Stack<long> FaceIDs = new Stack<long>();
                         FaceIDs.Push(-1);
                         int index = 0;
@@ -616,10 +625,16 @@ namespace BZ1GeoEditor
                                 }
                             }
                             lstFaces.Items.Add(new FaceListWrapper(dr, lineItem));
+
                             index++;
                         });
+
+                        lstFacesUV.Items.AddRange(lstFaces.Items);
+
                         lstFaces.EndUpdate();
+                        lstFacesUV.EndUpdate();
                         lstFaces.Enabled = true;
+                        lstFacesUV.Enabled = true;
 
                         FaceBranchMax = FaceBranchDict.Max(dr => Math.Abs(dr.Value));
 
@@ -760,10 +775,10 @@ namespace BZ1GeoEditor
 
         private Bitmap CreateCheckerBitmap(bool random = false)
         {
-            const int colWidth = 10;
-            const int rowHeight = 10;
+            const int colWidth = 16;
+            const int rowHeight = 16;
             System.Drawing.Bitmap checks = new System.Drawing.Bitmap(
-                colWidth * 10, rowHeight * 10);
+                colWidth * 16, rowHeight * 16);
             // The checkerboard consists of 10 rows and 10 columns.
             // Each square in the checkerboard is 10 x 10 pixels.
             // The nested for loops are used to calculate the position
@@ -778,9 +793,9 @@ namespace BZ1GeoEditor
 
             if(random) B = System.Drawing.Color.FromArgb(rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255));
 
-            for (int columns = 0; columns < 10; columns++)
+            for (int columns = 0; columns < 16; columns++)
             {
-                for (int rows = 0; rows < 10; rows++)
+                for (int rows = 0; rows < 16; rows++)
                 {
                     // Determine whether the current sqaure
                     // should be black or white.
@@ -1437,6 +1452,231 @@ namespace BZ1GeoEditor
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void lstFacesUV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateUVGraphics();
+        }
+
+        private void UpdateUVGraphics(float? dx = null, float? dy = null)
+        {
+            if (lstFacesUV.SelectedIndex > -1)
+            {
+                string TextureName = ((FaceListWrapper)(lstFacesUV.SelectedItems[0])).Value.TextureName_STR;
+
+                foreach (FaceListWrapper wrapper in lstFacesUV.SelectedItems)
+                {
+                    if (TextureName != wrapper.Value.TextureName_STR)
+                    {
+                        TextureName = null;
+                        break;
+                    }
+                }
+
+                if (TextureName != null && checkerBitmaps.ContainsKey(TextureName))
+                {
+                    TextureDataMap dat = checkerBitmaps[TextureName];
+                    Image tmpImg = null;
+
+                    if (dat.map != null)
+                    {
+                        if (dat.map.IsPalletized && dat.pallet != null)
+                        {
+                            tmpImg = dat.map.GetBitmap(dat.pallet);
+                        }
+                        else
+                        {
+                            tmpImg = dat.map.GetBitmap();
+                        }
+                    }
+                    else
+                    {
+                        tmpImg = CreateCheckerBitmap();
+                    }
+
+                    pbTextureUV.Image = new Bitmap(tmpImg.Width * 3, tmpImg.Height * 3);
+                    using (Graphics g = Graphics.FromImage(pbTextureUV.Image))
+                    {
+                        for (int x = 0; x < 3; x++)
+                        {
+                            for (int y = 0; y < 3; y++)
+                            {
+                                g.DrawImageUnscaled(tmpImg, x * tmpImg.Width, y * tmpImg.Height);
+                                if (x != 1 || y != 1)
+                                {
+                                    g.FillRectangle(new SolidBrush(Color.FromArgb(128, 0, 0, 0)), x * tmpImg.Width, y * tmpImg.Height, tmpImg.Width, tmpImg.Height);
+                                }
+                            }
+                        }
+
+                        g.DrawLines(new Pen(Color.FromArgb(128, 0, 0, 255)), new Point[] {
+                            new Point(tmpImg.Width - 1, tmpImg.Height - 1),
+                            new Point(tmpImg.Width + tmpImg.Width, tmpImg.Height - 1),
+                            new Point(tmpImg.Width + tmpImg.Width, tmpImg.Height + tmpImg.Height),
+                            new Point(tmpImg.Width - 1, tmpImg.Height + tmpImg.Height),
+                            new Point(tmpImg.Width - 1, tmpImg.Height - 1)
+                        });
+
+                        List<Rectangle> rects = new List<Rectangle>();
+                        List<Rectangle> rects2 = new List<Rectangle>();
+                        List<List<Point>> points = new List<List<Point>>();
+                        foreach (FaceListWrapper wrapper in lstFacesUV.SelectedItems)
+                        {
+                            Face f = wrapper.Value;
+
+                            List<Point> subpoints = new List<Point>();
+                            points.Add(subpoints);
+                            subpoints.Add(new Point((int)(f.Wireframe[f.VertexCount - 1].u * tmpImg.Width) + tmpImg.Width, (int)(f.Wireframe[f.VertexCount - 1].v * tmpImg.Height) + tmpImg.Height));
+                            for (int v = 0; v < f.VertexCount; v++)
+                            {
+                                FaceNode node = f.Wireframe[v];
+
+                                if (SelectedUVs.Contains(node))
+                                {
+                                    if (dx.HasValue && dy.HasValue)
+                                    {
+                                        rects2.Add(new Rectangle((int)((node.u + dx.Value) * tmpImg.Width) - 2 + tmpImg.Width, (int)((node.v + dy.Value) * tmpImg.Height) - 2 + tmpImg.Height, 5, 5));
+                                    }
+                                    else
+                                    {
+                                        rects2.Add(new Rectangle((int)(node.u * tmpImg.Width) - 2 + tmpImg.Width, (int)(node.v * tmpImg.Height) - 2 + tmpImg.Height, 5, 5));
+                                    }
+                                }
+                                else
+                                {
+                                    rects.Add(new Rectangle((int)(node.u * tmpImg.Width) - 2 + tmpImg.Width, (int)(node.v * tmpImg.Height) - 2 + tmpImg.Height, 5, 5));
+                                }
+                                subpoints.Add(new Point((int)(node.u * tmpImg.Width) + tmpImg.Width, (int)(node.v * tmpImg.Height) + tmpImg.Height));
+                            }
+                        }
+                        if (rects.Count > 0) { g.DrawRectangles(new Pen(Color.Blue), rects.ToArray()); }
+                        if (rects2.Count > 0) { g.DrawRectangles(new Pen(Color.Red), rects2.ToArray()); }
+                        points.ForEach(subpoints =>
+                        {
+                            if (subpoints.Count > 0) { g.DrawLines(new Pen(Color.LightGreen), subpoints.ToArray()); }
+                        });
+                    }
+                    pbTextureUV.Size = pbTextureUV.Image.Size;
+                }
+                else
+                {
+                    pbTextureUV.Image = null;
+                    pbTextureUV.Height = 0;
+                    pbTextureUV.Width = 0;
+                }
+            }
+            else
+            {
+                pbTextureUV.Image = null;
+                pbTextureUV.Height = 0;
+                pbTextureUV.Width = 0;
+            }
+        }
+
+        private List<FaceNode> SelectedUVs = new List<FaceNode>();
+        float UVStartX = 0.0f;
+        float UVStartY = 0.0f;
+
+        private void pbTextureUV_MouseDown(object sender, MouseEventArgs e)
+        {
+            SelectedUVs.Clear();
+
+            if (e.Button == MouseButtons.Left)
+            {
+                if (lstFacesUV.SelectedIndex > -1)
+                {
+                    if (pbTextureUV.Image != null)
+                    {
+                        int w = pbTextureUV.Image.Width / 3;
+                        int h = pbTextureUV.Image.Height / 3;
+                        UVStartX = (e.X - w) * 1.0f / w;
+                        UVStartY = (e.Y - h) * 1.0f / h;
+
+                        foreach (FaceListWrapper wrapper in lstFacesUV.SelectedItems)
+                        {
+                            //foreach(FaceNode node in wrapper.Value.Wireframe)
+                            for (int z = 0; z < wrapper.Value.VertexCount; z++)
+                            {
+                                FaceNode node = wrapper.Value.Wireframe[z];
+                                if (Math.Abs(node.u - UVStartX) < 0.02f && Math.Abs(node.v - UVStartY) < 0.02f)
+                                {
+                                    //Console.WriteLine("{0},{1}", node.u, node.v);
+                                    SelectedUVs.Add(node);
+                                }
+                            }
+                        }
+                    }
+                }
+                UpdateUVGraphics();
+            }else if(e.Button == MouseButtons.Right)
+            {
+                SelectedUVs.Clear();
+                UpdateUVGraphics();
+            }
+        }
+
+        private void pbTextureUV_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (SelectedUVs.Count > 0)
+                {
+                    if (lstFacesUV.SelectedIndex > -1)
+                    {
+                        if (pbTextureUV.Image != null)
+                        {
+                            int w = pbTextureUV.Image.Width / 3;
+                            int h = pbTextureUV.Image.Height / 3;
+                            float x = (e.X - w) * 1.0f / w;
+                            float y = (e.Y - h) * 1.0f / h;
+
+                            float dX = x - UVStartX;
+                            float dY = y - UVStartY;
+
+                            foreach (FaceListWrapper wrapper in lstFacesUV.SelectedItems)
+                            {
+                                for (int z = 0; z < wrapper.Value.VertexCount; z++)
+                                {
+                                    if (SelectedUVs.Contains(wrapper.Value.Wireframe[z]))
+                                    {
+                                        wrapper.Value.Wireframe[z].u += dX;
+                                        wrapper.Value.Wireframe[z].v += dY;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    SelectedUVs.Clear();
+                    UpdateUVGraphics();
+                }
+            }
+        }
+
+        private void pbTextureUV_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (SelectedUVs.Count > 0)
+                {
+                    if (lstFacesUV.SelectedIndex > -1)
+                    {
+                        if (pbTextureUV.Image != null)
+                        {
+                            int w = pbTextureUV.Image.Width / 3;
+                            int h = pbTextureUV.Image.Height / 3;
+                            float x = (e.X - w) * 1.0f / w;
+                            float y = (e.Y - h) * 1.0f / h;
+
+                            float dX = x - UVStartX;
+                            float dY = y - UVStartY;
+
+                            UpdateUVGraphics(dX, dY);
+                        }
+                    }
+                }
+            }
         }
     }
 }

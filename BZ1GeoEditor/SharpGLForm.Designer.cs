@@ -35,6 +35,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.textureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadMAPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearMAPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,10 +73,9 @@
             this.cbHeaderFlag11 = new System.Windows.Forms.CheckBox();
             this.cbHeaderFlag10 = new System.Windows.Forms.CheckBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -83,31 +84,35 @@
             this.cbTexture = new System.Windows.Forms.ComboBox();
             this.tcTabs = new System.Windows.Forms.TabControl();
             this.tpHeader = new System.Windows.Forms.TabPage();
-            this.tpFaces = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.txtInformation = new System.Windows.Forms.TextBox();
-            this.txtNotes = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtInformation = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.tmrNotes = new System.Windows.Forms.Timer(this.components);
-            this.tpTextures = new System.Windows.Forms.TabPage();
-            this.lblFaceCount = new System.Windows.Forms.Label();
+            this.txtNotes = new System.Windows.Forms.TextBox();
+            this.tpFaces = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbTextures = new System.Windows.Forms.ListBox();
-            this.btnAddTexture = new System.Windows.Forms.Button();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnRemoveTexture = new System.Windows.Forms.Button();
+            this.lblFaceCount = new System.Windows.Forms.Label();
+            this.tpTextures = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pbTexture = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbTextures = new System.Windows.Forms.ListBox();
+            this.btnAddTexture = new System.Windows.Forms.Button();
+            this.btnRemoveTexture = new System.Windows.Forms.Button();
+            this.tmrNotes = new System.Windows.Forms.Timer(this.components);
+            this.tpUV = new System.Windows.Forms.TabPage();
+            this.lstFacesUV = new System.Windows.Forms.ListBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pbTextureUV = new System.Windows.Forms.PictureBox();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.pbPallet = new BZ1GeoEditor.EnhancedPicture();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -117,19 +122,34 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tcTabs.SuspendLayout();
             this.tpHeader.SuspendLayout();
-            this.tpFaces.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tpFaces.SuspendLayout();
             this.tpTextures.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTexture)).BeginInit();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tpUV.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTextureUV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPallet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,7 +162,7 @@
             this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl.RenderContextType = SharpGL.RenderContextType.FBO;
             this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
-            this.openGLControl.Size = new System.Drawing.Size(957, 244);
+            this.openGLControl.Size = new System.Drawing.Size(969, 260);
             this.openGLControl.TabIndex = 0;
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
@@ -158,9 +178,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.openGLControl);
-            this.panel1.Location = new System.Drawing.Point(12, 352);
+            this.panel1.Location = new System.Drawing.Point(6, 52);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(957, 244);
+            this.panel1.Size = new System.Drawing.Size(969, 260);
             this.panel1.TabIndex = 1;
             // 
             // menuStrip1
@@ -189,16 +209,28 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(100, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.toolStripMenuItem1.Text = "E&xit";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // textureToolStripMenuItem
             // 
@@ -274,7 +306,7 @@
             // 
             // btnBackgroundColor
             // 
-            this.btnBackgroundColor.BackColor = System.Drawing.Color.Black;
+            this.btnBackgroundColor.BackColor = System.Drawing.Color.Gray;
             this.btnBackgroundColor.Location = new System.Drawing.Point(6, 16);
             this.btnBackgroundColor.Name = "btnBackgroundColor";
             this.btnBackgroundColor.Size = new System.Drawing.Size(21, 21);
@@ -297,13 +329,14 @@
             this.txtName.Location = new System.Drawing.Point(3, 16);
             this.txtName.MaxLength = 16;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(228, 20);
+            this.txtName.Size = new System.Drawing.Size(218, 20);
             this.txtName.TabIndex = 6;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // lstFaces
             // 
-            this.lstFaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lstFaces.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstFaces.Enabled = false;
             this.lstFaces.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -312,7 +345,7 @@
             this.lstFaces.Location = new System.Drawing.Point(209, 6);
             this.lstFaces.Name = "lstFaces";
             this.lstFaces.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstFaces.Size = new System.Drawing.Size(734, 225);
+            this.lstFaces.Size = new System.Drawing.Size(746, 225);
             this.lstFaces.TabIndex = 8;
             this.lstFaces.SelectedIndexChanged += new System.EventHandler(this.lstFaces_SelectedIndexChanged);
             // 
@@ -590,7 +623,7 @@
             this.cbHeaderFlag11.Enabled = false;
             this.cbHeaderFlag11.Location = new System.Drawing.Point(3, 26);
             this.cbHeaderFlag11.Name = "cbHeaderFlag11";
-            this.cbHeaderFlag11.Size = new System.Drawing.Size(221, 17);
+            this.cbHeaderFlag11.Size = new System.Drawing.Size(212, 17);
             this.cbHeaderFlag11.TabIndex = 17;
             this.cbHeaderFlag11.Text = "TWO_THIRD_TRANSLUCENT_PIXELS";
             this.cbHeaderFlag11.UseVisualStyleBackColor = true;
@@ -615,27 +648,12 @@
             this.saveFileDialog1.Filter = "GEO files|*.geo";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
-            // trackBar1
-            // 
-            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(250, 314);
-            this.trackBar1.Margin = new System.Windows.Forms.Padding(0);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.trackBar1.Size = new System.Drawing.Size(719, 45);
-            this.trackBar1.TabIndex = 21;
-            this.trackBar1.Value = 4;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 91);
+            this.groupBox1.Location = new System.Drawing.Point(3, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(234, 134);
+            this.groupBox1.Size = new System.Drawing.Size(224, 134);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Composit Flags";
@@ -658,14 +676,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(228, 115);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(218, 115);
             this.tableLayoutPanel1.TabIndex = 23;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(243, 3);
+            this.groupBox3.Location = new System.Drawing.Point(233, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(224, 225);
             this.groupBox3.TabIndex = 23;
@@ -704,10 +721,9 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txtName);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(234, 44);
+            this.groupBox4.Size = new System.Drawing.Size(224, 44);
             this.groupBox4.TabIndex = 24;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Name";
@@ -716,7 +732,7 @@
             // 
             this.groupBox5.Controls.Add(this.btnBackgroundColor);
             this.groupBox5.Controls.Add(this.cbRender);
-            this.groupBox5.Location = new System.Drawing.Point(12, 301);
+            this.groupBox5.Location = new System.Drawing.Point(4, 3);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(235, 45);
             this.groupBox5.TabIndex = 26;
@@ -762,74 +778,34 @@
             // 
             // tcTabs
             // 
-            this.tcTabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tcTabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tcTabs.Controls.Add(this.tpHeader);
             this.tcTabs.Controls.Add(this.tpFaces);
             this.tcTabs.Controls.Add(this.tpTextures);
-            this.tcTabs.Location = new System.Drawing.Point(12, 32);
+            this.tcTabs.Controls.Add(this.tpUV);
+            this.tcTabs.Location = new System.Drawing.Point(6, 1);
             this.tcTabs.Name = "tcTabs";
             this.tcTabs.SelectedIndex = 0;
-            this.tcTabs.Size = new System.Drawing.Size(957, 263);
+            this.tcTabs.Size = new System.Drawing.Size(969, 263);
             this.tcTabs.TabIndex = 27;
             // 
             // tpHeader
             // 
-            this.tpHeader.Controls.Add(this.tableLayoutPanel4);
+            this.tpHeader.Controls.Add(this.splitContainer3);
             this.tpHeader.Location = new System.Drawing.Point(4, 22);
             this.tpHeader.Name = "tpHeader";
             this.tpHeader.Padding = new System.Windows.Forms.Padding(3);
-            this.tpHeader.Size = new System.Drawing.Size(949, 237);
+            this.tpHeader.Size = new System.Drawing.Size(961, 237);
             this.tpHeader.TabIndex = 0;
             this.tpHeader.Text = "GEO Header";
             this.tpHeader.UseVisualStyleBackColor = true;
             // 
-            // tpFaces
-            // 
-            this.tpFaces.Controls.Add(this.label1);
-            this.tpFaces.Controls.Add(this.lblFaceCount);
-            this.tpFaces.Controls.Add(this.tableLayoutPanel3);
-            this.tpFaces.Controls.Add(this.lstFaces);
-            this.tpFaces.Location = new System.Drawing.Point(4, 22);
-            this.tpFaces.Name = "tpFaces";
-            this.tpFaces.Padding = new System.Windows.Forms.Padding(3);
-            this.tpFaces.Size = new System.Drawing.Size(949, 237);
-            this.tpFaces.TabIndex = 1;
-            this.tpFaces.Text = "Faces";
-            this.tpFaces.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 230F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.panel2, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.groupBox3, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.splitContainer1, 2, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 231F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(943, 231);
-            this.tableLayoutPanel4.TabIndex = 25;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.groupBox4);
-            this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(234, 225);
-            this.panel2.TabIndex = 28;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(473, 3);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -840,9 +816,20 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox6);
-            this.splitContainer1.Size = new System.Drawing.Size(467, 225);
-            this.splitContainer1.SplitterDistance = 111;
+            this.splitContainer1.Size = new System.Drawing.Size(491, 231);
+            this.splitContainer1.SplitterDistance = 113;
             this.splitContainer1.TabIndex = 29;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtInformation);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(491, 113);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Information";
             // 
             // txtInformation
             // 
@@ -852,8 +839,19 @@
             this.txtInformation.Name = "txtInformation";
             this.txtInformation.ReadOnly = true;
             this.txtInformation.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtInformation.Size = new System.Drawing.Size(461, 92);
+            this.txtInformation.Size = new System.Drawing.Size(485, 94);
             this.txtInformation.TabIndex = 0;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtNotes);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.Location = new System.Drawing.Point(0, 0);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(491, 114);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Notes";
             // 
             // txtNotes
             // 
@@ -862,49 +860,33 @@
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNotes.Size = new System.Drawing.Size(461, 91);
+            this.txtNotes.Size = new System.Drawing.Size(485, 95);
             this.txtNotes.TabIndex = 0;
             this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
             // 
-            // groupBox2
+            // tpFaces
             // 
-            this.groupBox2.Controls.Add(this.txtInformation);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(467, 111);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Information";
+            this.tpFaces.Controls.Add(this.label1);
+            this.tpFaces.Controls.Add(this.lblFaceCount);
+            this.tpFaces.Controls.Add(this.tableLayoutPanel3);
+            this.tpFaces.Controls.Add(this.lstFaces);
+            this.tpFaces.Location = new System.Drawing.Point(4, 22);
+            this.tpFaces.Name = "tpFaces";
+            this.tpFaces.Padding = new System.Windows.Forms.Padding(3);
+            this.tpFaces.Size = new System.Drawing.Size(961, 237);
+            this.tpFaces.TabIndex = 1;
+            this.tpFaces.Text = "Faces";
+            this.tpFaces.UseVisualStyleBackColor = true;
             // 
-            // groupBox6
+            // label1
             // 
-            this.groupBox6.Controls.Add(this.txtNotes);
-            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(0, 0);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(467, 110);
-            this.groupBox6.TabIndex = 1;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Notes";
-            // 
-            // tmrNotes
-            // 
-            this.tmrNotes.Interval = 1000;
-            this.tmrNotes.Tick += new System.EventHandler(this.tmrNotes_Tick);
-            // 
-            // tpTextures
-            // 
-            this.tpTextures.Controls.Add(this.pbPallet);
-            this.tpTextures.Controls.Add(this.panel3);
-            this.tpTextures.Controls.Add(this.tableLayoutPanel5);
-            this.tpTextures.Location = new System.Drawing.Point(4, 22);
-            this.tpTextures.Name = "tpTextures";
-            this.tpTextures.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTextures.Size = new System.Drawing.Size(949, 237);
-            this.tpTextures.TabIndex = 2;
-            this.tpTextures.Text = "Textures";
-            this.tpTextures.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 184);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 26);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Selected:";
             // 
             // lblFaceCount
             // 
@@ -916,15 +898,56 @@
             this.lblFaceCount.TabIndex = 9;
             this.lblFaceCount.Text = "0";
             // 
-            // label1
+            // tpTextures
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 184);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 26);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Selected:";
+            this.tpTextures.Controls.Add(this.pbPallet);
+            this.tpTextures.Controls.Add(this.panel3);
+            this.tpTextures.Controls.Add(this.tableLayoutPanel5);
+            this.tpTextures.Location = new System.Drawing.Point(4, 22);
+            this.tpTextures.Name = "tpTextures";
+            this.tpTextures.Padding = new System.Windows.Forms.Padding(3);
+            this.tpTextures.Size = new System.Drawing.Size(961, 237);
+            this.tpTextures.TabIndex = 2;
+            this.tpTextures.Text = "Textures";
+            this.tpTextures.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.AutoScroll = true;
+            this.panel3.Controls.Add(this.pbTexture);
+            this.panel3.Location = new System.Drawing.Point(144, 6);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(814, 190);
+            this.panel3.TabIndex = 3;
+            // 
+            // pbTexture
+            // 
+            this.pbTexture.Location = new System.Drawing.Point(3, 3);
+            this.pbTexture.Name = "pbTexture";
+            this.pbTexture.Size = new System.Drawing.Size(100, 50);
+            this.pbTexture.TabIndex = 0;
+            this.pbTexture.TabStop = false;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.btnAddTexture, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.lbTextures, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnRemoveTexture, 1, 1);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 6);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(135, 225);
+            this.tableLayoutPanel5.TabIndex = 2;
             // 
             // lbTextures
             // 
@@ -950,22 +973,6 @@
             this.btnAddTexture.UseVisualStyleBackColor = true;
             this.btnAddTexture.Click += new System.EventHandler(this.btnAddTexture_Click);
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.btnAddTexture, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.lbTextures, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnRemoveTexture, 1, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 6);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(135, 225);
-            this.tableLayoutPanel5.TabIndex = 2;
-            // 
             // btnRemoveTexture
             // 
             this.btnRemoveTexture.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -978,58 +985,159 @@
             this.btnRemoveTexture.UseVisualStyleBackColor = true;
             this.btnRemoveTexture.Click += new System.EventHandler(this.btnRemoveTexture_Click);
             // 
-            // panel3
+            // tmrNotes
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tmrNotes.Interval = 1000;
+            this.tmrNotes.Tick += new System.EventHandler(this.tmrNotes_Tick);
+            // 
+            // tpUV
+            // 
+            this.tpUV.Controls.Add(this.splitContainer4);
+            this.tpUV.Location = new System.Drawing.Point(4, 22);
+            this.tpUV.Name = "tpUV";
+            this.tpUV.Padding = new System.Windows.Forms.Padding(3);
+            this.tpUV.Size = new System.Drawing.Size(961, 237);
+            this.tpUV.TabIndex = 3;
+            this.tpUV.Text = "UV";
+            this.tpUV.UseVisualStyleBackColor = true;
+            // 
+            // lstFacesUV
+            // 
+            this.lstFacesUV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstFacesUV.Enabled = false;
+            this.lstFacesUV.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstFacesUV.FormattingEnabled = true;
+            this.lstFacesUV.HorizontalScrollbar = true;
+            this.lstFacesUV.Location = new System.Drawing.Point(0, 0);
+            this.lstFacesUV.Name = "lstFacesUV";
+            this.lstFacesUV.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lstFacesUV.Size = new System.Drawing.Size(162, 231);
+            this.lstFacesUV.TabIndex = 9;
+            this.lstFacesUV.SelectedIndexChanged += new System.EventHandler(this.lstFacesUV_SelectedIndexChanged);
+            // 
+            // panel4
+            // 
+            this.panel4.AutoScroll = true;
+            this.panel4.Controls.Add(this.pbTextureUV);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(789, 231);
+            this.panel4.TabIndex = 10;
+            // 
+            // pbTextureUV
+            // 
+            this.pbTextureUV.Location = new System.Drawing.Point(3, 3);
+            this.pbTextureUV.Name = "pbTextureUV";
+            this.pbTextureUV.Size = new System.Drawing.Size(100, 50);
+            this.pbTextureUV.TabIndex = 0;
+            this.pbTextureUV.TabStop = false;
+            this.pbTextureUV.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbTextureUV_MouseDown);
+            this.pbTextureUV.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbTextureUV_MouseMove);
+            this.pbTextureUV.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbTextureUV_MouseUp);
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.tcTabs);
+            this.splitContainer2.Panel1MinSize = 263;
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.groupBox5);
+            this.splitContainer2.Panel2.Controls.Add(this.panel1);
+            this.splitContainer2.Panel2.Controls.Add(this.trackBar1);
+            this.splitContainer2.Size = new System.Drawing.Size(981, 584);
+            this.splitContainer2.SplitterDistance = 263;
+            this.splitContainer2.TabIndex = 28;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.AutoScroll = true;
-            this.panel3.Controls.Add(this.pbTexture);
-            this.panel3.Location = new System.Drawing.Point(144, 6);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(799, 190);
-            this.panel3.TabIndex = 3;
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(242, 14);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(0);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.trackBar1.Size = new System.Drawing.Size(730, 45);
+            this.trackBar1.TabIndex = 21;
+            this.trackBar1.Value = 4;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
-            // pbTexture
+            // flowLayoutPanel1
             // 
-            this.pbTexture.Location = new System.Drawing.Point(3, 3);
-            this.pbTexture.Name = "pbTexture";
-            this.pbTexture.Size = new System.Drawing.Size(100, 50);
-            this.pbTexture.TabIndex = 0;
-            this.pbTexture.TabStop = false;
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.groupBox4);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox1);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox3);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(460, 231);
+            this.flowLayoutPanel1.TabIndex = 25;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.flowLayoutPanel1);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.splitContainer1);
+            this.splitContainer3.Size = new System.Drawing.Size(955, 231);
+            this.splitContainer3.SplitterDistance = 460;
+            this.splitContainer3.TabIndex = 30;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer4.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer4.Name = "splitContainer4";
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.lstFacesUV);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.panel4);
+            this.splitContainer4.Size = new System.Drawing.Size(955, 231);
+            this.splitContainer4.SplitterDistance = 162;
+            this.splitContainer4.TabIndex = 11;
             // 
             // pbPallet
             // 
-            this.pbPallet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pbPallet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pbPallet.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbPallet.Interpolation = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             this.pbPallet.Location = new System.Drawing.Point(144, 202);
             this.pbPallet.Name = "pbPallet";
-            this.pbPallet.Size = new System.Drawing.Size(799, 26);
+            this.pbPallet.Size = new System.Drawing.Size(814, 26);
             this.pbPallet.TabIndex = 1;
             this.pbPallet.TabStop = false;
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem1.Text = "E&xit";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // SharpGLForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 608);
-            this.Controls.Add(this.tcTabs);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -1040,7 +1148,6 @@
             this.panel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -1054,10 +1161,6 @@
             this.tableLayoutPanel3.PerformLayout();
             this.tcTabs.ResumeLayout(false);
             this.tpHeader.ResumeLayout(false);
-            this.tpFaces.ResumeLayout(false);
-            this.tpFaces.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -1066,10 +1169,30 @@
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tpFaces.ResumeLayout(false);
+            this.tpFaces.PerformLayout();
             this.tpTextures.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbTexture)).EndInit();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tpUV.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbTextureUV)).EndInit();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbPallet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1120,7 +1243,6 @@
         private System.Windows.Forms.CheckBox cbHeaderFlag10;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ColorDialog colorDialog2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -1133,8 +1255,6 @@
         private System.Windows.Forms.TabControl tcTabs;
         private System.Windows.Forms.TabPage tpHeader;
         private System.Windows.Forms.TabPage tpFaces;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtInformation;
@@ -1153,6 +1273,15 @@
         private EnhancedPicture pbPallet;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.TabPage tpUV;
+        private System.Windows.Forms.ListBox lstFacesUV;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox pbTextureUV;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.SplitContainer splitContainer4;
     }
 }
 
