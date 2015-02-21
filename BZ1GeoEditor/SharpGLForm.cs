@@ -488,6 +488,10 @@ namespace BZ1GeoEditor
             {
                 saveFileDialog1.InitialDirectory = Path.GetDirectoryName(openFileDialog1.FileName);
                 saveFileDialog1.FileName = Path.GetFileName(openFileDialog1.FileName);
+
+                saveFileDialog2.InitialDirectory = Path.GetDirectoryName(openFileDialog1.FileName);
+                saveFileDialog2.FileName = Path.ChangeExtension(Path.GetFileName(openFileDialog1.FileName), "obj");
+
                 processFile(openFileDialog1.FileName);
             }
         }
@@ -1495,6 +1499,20 @@ namespace BZ1GeoEditor
                         tmpImg = CreateCheckerBitmap();
                     }
 
+                    nudZoom.Enabled = true;
+                    nudZoom.Maximum = Math.Max(1, (int)(512 / Math.Max(tmpImg.Width, tmpImg.Height)));
+
+                    int scaleFactor = (int)nudZoom.Value;
+                    Image tmpImg2 = (Image)new Bitmap(tmpImg.Width * scaleFactor, tmpImg.Height * scaleFactor);
+                    using (Graphics g = Graphics.FromImage(tmpImg2))
+                    {
+                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                        g.DrawImage(tmpImg, 0, 0, tmpImg.Width * scaleFactor, tmpImg.Height * scaleFactor);
+                    }
+                    tmpImg.Dispose();
+                    tmpImg = tmpImg2;
+
                     pbTextureUV.Image = new Bitmap(tmpImg.Width * 3, tmpImg.Height * 3);
                     using (Graphics g = Graphics.FromImage(pbTextureUV.Image))
                     {
@@ -1557,6 +1575,7 @@ namespace BZ1GeoEditor
                             if (subpoints.Count > 0) { g.DrawLines(new Pen(Color.LightGreen), subpoints.ToArray()); }
                         });
                     }
+                    tmpImg.Dispose();
                     pbTextureUV.Size = pbTextureUV.Image.Size;
                 }
                 else
@@ -1571,12 +1590,16 @@ namespace BZ1GeoEditor
                 pbTextureUV.Image = null;
                 pbTextureUV.Height = 0;
                 pbTextureUV.Width = 0;
+
+                nudZoom.Enabled = true;
+                nudZoom.Maximum = 1;
             }
         }
 
         private List<FaceNode> SelectedUVs = new List<FaceNode>();
         float UVStartX = 0.0f;
         float UVStartY = 0.0f;
+        bool DraggingUV = false;
 
         private void pbTextureUV_MouseDown(object sender, MouseEventArgs e)
         {
@@ -1606,6 +1629,8 @@ namespace BZ1GeoEditor
                                 }
                             }
                         }
+                        DraggingUV = true;
+                        tmrUV.Start();
                     }
                 }
                 UpdateUVGraphics();
@@ -1613,6 +1638,7 @@ namespace BZ1GeoEditor
             {
                 SelectedUVs.Clear();
                 UpdateUVGraphics();
+                DraggingUV = false;
             }
         }
 
@@ -1645,6 +1671,10 @@ namespace BZ1GeoEditor
                                     }
                                 }
                             }
+
+                            tmrUV.Start();
+
+                            DraggingUV = false;
                         }
                     }
 
@@ -1653,6 +1683,9 @@ namespace BZ1GeoEditor
                 }
             }
         }
+
+        float UVdX = 0.0f;
+        float UVdY = 0.0f;
 
         private void pbTextureUV_MouseMove(object sender, MouseEventArgs e)
         {
@@ -1669,10 +1702,128 @@ namespace BZ1GeoEditor
                             float x = (e.X - w) * 1.0f / w;
                             float y = (e.Y - h) * 1.0f / h;
 
-                            float dX = x - UVStartX;
-                            float dY = y - UVStartY;
+                            UVdX = x - UVStartX;
+                            UVdY = y - UVStartY;
 
-                            UpdateUVGraphics(dX, dY);
+                            if (!tmrUV.Enabled) tmrUV.Start();
+                        }
+                        else { tmrUV.Stop(); }
+                    }
+                    else { tmrUV.Stop(); }
+                }
+                else { tmrUV.Stop(); }
+            }
+            else { tmrUV.Stop(); }
+        }
+
+        private void tmrUV_Tick(object sender, EventArgs e)
+        {
+            if (SelectedUVs.Count > 0)
+            {
+                if (lstFacesUV.SelectedIndex > -1)
+                {
+                    if (pbTextureUV.Image != null)
+                    {
+                        UpdateUVGraphics(UVdX, UVdY);
+                    }
+                }
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (DraggingUV)
+            {
+                switch (keyData)
+                {
+                    case Keys.W:
+                        Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y - 1);
+                        break;
+                    case Keys.D:
+                        Cursor.Position = new Point(Cursor.Position.X + 1, Cursor.Position.Y);
+                        break;
+                    case Keys.S:
+                        Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y + 1);
+                        break;
+                    case Keys.A:
+                        Cursor.Position = new Point(Cursor.Position.X - 1, Cursor.Position.Y);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void nudZoom_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateUVGraphics();
+        }
+
+        private void exportOBJToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(geo != null)
+            {
+                if(saveFileDialog2.ShowDialog() == DialogResult.OK)
+                {
+                    using (FileStream fstream = File.Open(Path.ChangeExtension(saveFileDialog2.FileName,"mtl"), FileMode.Create))
+                    {
+                        using (StreamWriter writer = new StreamWriter(fstream))
+                        {
+                            textureNames.ForEach(text =>
+                            {
+                                writer.WriteLine("newmtl {0}", text);
+                                writer.WriteLine("Ka 1.000000 1.000000 1.000000");
+                                writer.WriteLine("Kd 1.000000 1.000000 1.000000");
+                                writer.WriteLine("Ks 0.000000 0.000000 0.000000");
+                                writer.WriteLine("Tr 1.000000");
+                                writer.WriteLine("illum 1");
+                                writer.WriteLine("Ns 0.000000");
+                                writer.WriteLine("map_Kd {0}.bmp", text);
+                                writer.WriteLine();
+                            });
+                        }
+                    }
+                    using (FileStream fstream = File.Open(saveFileDialog2.FileName, FileMode.Create))
+                    {
+                        using (StreamWriter writer = new StreamWriter(fstream))
+                        {
+                            writer.WriteLine("mtllib {0}", Path.ChangeExtension(Path.GetFileName(saveFileDialog2.FileName), "mtl"));
+                            writer.WriteLine();
+
+                            foreach(Vector3D vect in geo.vecs)
+                            {
+                                writer.WriteLine("v {0} {1} {2}", -vect.x, -vect.z, vect.y);
+                            }
+                            writer.WriteLine();
+
+                            geo.faces.ForEach(face =>
+                            {
+                                foreach (FaceNode node in face.Wireframe)
+                                {
+                                    writer.WriteLine("vt {0} {1}", node.u, 1 - node.v);
+                                }
+                            });
+                            writer.WriteLine();
+
+                            foreach(Vector3D vect in geo.vecnorms)
+                            {
+                                writer.WriteLine("vn {0} {1} {2}", -vect.x, -vect.z, vect.y);
+                            }
+                            writer.WriteLine();
+
+                            int uvcounter = 1;
+                            geo.faces.ForEach(face =>
+                            {
+                                writer.WriteLine("usemtl {0}", face.TextureName_STR);
+
+                                writer.Write("f");
+                                foreach(FaceNode node in face.Wireframe)
+                                {
+                                    writer.Write(" {0}/{1}/{2}", node.VertexId + 1, uvcounter++, node.VertexNormalId + 1);
+                                }
+                                writer.WriteLine();
+                            });
                         }
                     }
                 }
