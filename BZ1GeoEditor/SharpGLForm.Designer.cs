@@ -36,6 +36,8 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportOBJToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.textureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadMAPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,17 +107,16 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.lstFacesUV = new System.Windows.Forms.ListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nudZoom = new System.Windows.Forms.NumericUpDown();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tmrNotes = new System.Windows.Forms.Timer(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.tmrUV = new System.Windows.Forms.Timer(this.components);
-            this.nudZoom = new System.Windows.Forms.NumericUpDown();
+            this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
+            this.cbNorms = new System.Windows.Forms.CheckBox();
             this.pbPallet = new BZ1GeoEditor.EnhancedPicture();
             this.pbTextureUV = new BZ1GeoEditor.EnhancedPicture();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.exportOBJToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -149,13 +150,13 @@
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudZoom)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudZoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPallet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTextureUV)).BeginInit();
             this.SuspendLayout();
@@ -218,26 +219,38 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(127, 6);
+            // 
+            // exportOBJToolStripMenuItem
+            // 
+            this.exportOBJToolStripMenuItem.Name = "exportOBJToolStripMenuItem";
+            this.exportOBJToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.exportOBJToolStripMenuItem.Text = "&Export OBJ";
+            this.exportOBJToolStripMenuItem.Click += new System.EventHandler(this.exportOBJToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(127, 6);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
             this.toolStripMenuItem1.Text = "E&xit";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -302,6 +315,7 @@
             this.cbRender.Items.AddRange(new object[] {
             "Special: TreeBranch",
             "Special: Area",
+            "Special: Distance",
             "Wire",
             "Solid",
             "Color",
@@ -309,7 +323,7 @@
             "Texture"});
             this.cbRender.Location = new System.Drawing.Point(33, 16);
             this.cbRender.Name = "cbRender";
-            this.cbRender.Size = new System.Drawing.Size(196, 21);
+            this.cbRender.Size = new System.Drawing.Size(157, 21);
             this.cbRender.TabIndex = 3;
             this.cbRender.SelectedIndexChanged += new System.EventHandler(this.cbRender_SelectedIndexChanged);
             // 
@@ -739,11 +753,12 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.cbNorms);
             this.groupBox5.Controls.Add(this.btnBackgroundColor);
             this.groupBox5.Controls.Add(this.cbRender);
             this.groupBox5.Location = new System.Drawing.Point(4, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(235, 45);
+            this.groupBox5.Size = new System.Drawing.Size(256, 45);
             this.groupBox5.TabIndex = 26;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Render";
@@ -1082,6 +1097,31 @@
             this.textBox1.Text = "Use WASD to nudge cursor";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // nudZoom
+            // 
+            this.nudZoom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.nudZoom.Enabled = false;
+            this.nudZoom.Location = new System.Drawing.Point(0, 211);
+            this.nudZoom.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudZoom.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudZoom.Name = "nudZoom";
+            this.nudZoom.Size = new System.Drawing.Size(162, 20);
+            this.nudZoom.TabIndex = 11;
+            this.nudZoom.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudZoom.ValueChanged += new System.EventHandler(this.nudZoom_ValueChanged);
+            // 
             // panel4
             // 
             this.panel4.AutoScroll = true;
@@ -1124,11 +1164,11 @@
             this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(242, 14);
+            this.trackBar1.Location = new System.Drawing.Point(263, 14);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(0);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.trackBar1.Size = new System.Drawing.Size(730, 45);
+            this.trackBar1.Size = new System.Drawing.Size(709, 45);
             this.trackBar1.TabIndex = 21;
             this.trackBar1.Value = 4;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -1137,30 +1177,20 @@
             // 
             this.tmrUV.Tick += new System.EventHandler(this.tmrUV_Tick);
             // 
-            // nudZoom
+            // saveFileDialog2
             // 
-            this.nudZoom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.nudZoom.Enabled = false;
-            this.nudZoom.Location = new System.Drawing.Point(0, 211);
-            this.nudZoom.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudZoom.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudZoom.Name = "nudZoom";
-            this.nudZoom.Size = new System.Drawing.Size(162, 20);
-            this.nudZoom.TabIndex = 11;
-            this.nudZoom.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudZoom.ValueChanged += new System.EventHandler(this.nudZoom_ValueChanged);
+            this.saveFileDialog2.Filter = "OBJ files|*.obj";
+            // 
+            // cbNorms
+            // 
+            this.cbNorms.AutoSize = true;
+            this.cbNorms.Enabled = false;
+            this.cbNorms.Location = new System.Drawing.Point(197, 19);
+            this.cbNorms.Name = "cbNorms";
+            this.cbNorms.Size = new System.Drawing.Size(56, 17);
+            this.cbNorms.TabIndex = 5;
+            this.cbNorms.Text = "Norms";
+            this.cbNorms.UseVisualStyleBackColor = true;
             // 
             // pbPallet
             // 
@@ -1186,22 +1216,6 @@
             this.pbTextureUV.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbTextureUV_MouseMove);
             this.pbTextureUV.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbTextureUV_MouseUp);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
-            // 
-            // exportOBJToolStripMenuItem
-            // 
-            this.exportOBJToolStripMenuItem.Name = "exportOBJToolStripMenuItem";
-            this.exportOBJToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exportOBJToolStripMenuItem.Text = "&Export OBJ";
-            this.exportOBJToolStripMenuItem.Click += new System.EventHandler(this.exportOBJToolStripMenuItem_Click);
-            // 
-            // saveFileDialog2
-            // 
-            this.saveFileDialog2.Filter = "OBJ files|*.obj";
-            // 
             // SharpGLForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1226,6 +1240,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tcTabs.ResumeLayout(false);
@@ -1255,6 +1270,7 @@
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudZoom)).EndInit();
             this.panel4.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -1262,7 +1278,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudZoom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPallet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTextureUV)).EndInit();
             this.ResumeLayout(false);
@@ -1359,6 +1374,7 @@
         private System.Windows.Forms.ToolStripMenuItem exportOBJToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.SaveFileDialog saveFileDialog2;
+        private System.Windows.Forms.CheckBox cbNorms;
     }
 }
 

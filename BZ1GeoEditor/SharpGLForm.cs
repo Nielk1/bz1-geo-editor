@@ -109,6 +109,9 @@ namespace BZ1GeoEditor
                     bool color = false;
                     bool frontback = false;
                     bool areacolor = false;
+                    bool RENDER_NORM = cbNorms.Checked;
+                    float DistanceMax = 0.0f;
+                    bool RENDER_DISTANCE = false;
 
                     float treeRatio = 0.5f;
 
@@ -131,6 +134,10 @@ namespace BZ1GeoEditor
                             break;
                         case RenderStyle.FaceArea:
                             areacolor = true;
+                            break;
+                        case RenderStyle.Distance:
+                            RENDER_DISTANCE = true;
+                            DistanceMax = geo.faces.Max(dr => dr.Plane.Distance);
                             break;
                         case RenderStyle.Wire:
                             gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_LINE);
@@ -179,6 +186,11 @@ namespace BZ1GeoEditor
                             gl.ShadeModel(OpenGL.GL_FLAT);
                         }
 
+                        if (RENDER_DISTANCE || frontback || areacolor)
+                        {
+                            gl.Disable(OpenGL.GL_LIGHTING);
+                        }
+
                         gl.Begin(OpenGL.GL_TRIANGLES);
 
                         int off1 = 0;
@@ -202,6 +214,9 @@ namespace BZ1GeoEditor
                         Color? branch = null;
                         if (frontback) { branch = Lerp(Color.Red, Color.White, treeRatio); }
 
+                        Color? distance = null;
+                        if (RENDER_DISTANCE) { distance = Lerp(Color.Red, Color.White, face.Plane.Distance / DistanceMax); }
+
                         for (int vertId = 2; vertId < face.Wireframe.Length; vertId++)
                         {
                             Vector3D v2 = geo.vecs[face.Wireframe[vertId].VertexId];
@@ -211,6 +226,7 @@ namespace BZ1GeoEditor
                             //MSHModel.VertIndex state2 = rootBlock.vertToState[face.Wireframe[vertId]];
 
                             if (area.HasValue) { gl.Color(area.Value.R, area.Value.G, area.Value.B, alpha); }
+                            else if (distance.HasValue) { gl.Color(distance.Value.R, distance.Value.G, distance.Value.B, alpha); }
                             //else if (frontback) { if (face.TreeBranch == Face.FRONT) { gl.Color((byte)0xff, (byte)0x0, (byte)0x0, alpha); } else { gl.Color((byte)0x0, (byte)0x0, (byte)0xff, alpha); } }
                             else if (branch.HasValue) { gl.Color(branch.Value.R, branch.Value.G, branch.Value.B, alpha); }
                             else if (color) { gl.Color(face.Color.r, face.Color.g, face.Color.b, alpha); } else { gl.Color((byte)0xee, (byte)0xee, (byte)0xee, alpha); }
@@ -219,6 +235,7 @@ namespace BZ1GeoEditor
                             gl.Vertex(v0.x, v0.y, -v0.z);
 
                             if (area.HasValue) { gl.Color(area.Value.R, area.Value.G, area.Value.B, alpha); }
+                            else if (distance.HasValue) { gl.Color(distance.Value.R, distance.Value.G, distance.Value.B, alpha); }
                             //else if (frontback) { if (face.TreeBranch == Face.FRONT) { gl.Color((byte)0xff, (byte)0x0, (byte)0x0, alpha); } else { gl.Color((byte)0x0, (byte)0x0, (byte)0xff, alpha); } }
                             else if (branch.HasValue) { gl.Color(branch.Value.R, branch.Value.G, branch.Value.B, alpha); }
                             else if (color) { gl.Color(face.Color.r, face.Color.g, face.Color.b, alpha); } else { gl.Color((byte)0xee, (byte)0xee, (byte)0xee, alpha); }
@@ -227,6 +244,7 @@ namespace BZ1GeoEditor
                             gl.Vertex(v1.x, v1.y, -v1.z);
 
                             if (area.HasValue) { gl.Color(area.Value.R, area.Value.G, area.Value.B, alpha); }
+                            else if (distance.HasValue) { gl.Color(distance.Value.R, distance.Value.G, distance.Value.B, alpha); }
                             //else if (frontback) { if (face.TreeBranch == Face.FRONT) { gl.Color((byte)0xff, (byte)0x0, (byte)0x0, alpha); } else { gl.Color((byte)0x0, (byte)0x0, (byte)0xff, alpha); } }
                             else if (branch.HasValue) { gl.Color(branch.Value.R, branch.Value.G, branch.Value.B, alpha); }
                             else if (color) { gl.Color(face.Color.r, face.Color.g, face.Color.b, alpha); } else { gl.Color((byte)0xee, (byte)0xee, (byte)0xee, alpha); }
@@ -242,6 +260,11 @@ namespace BZ1GeoEditor
                         }
 
                         gl.End();
+
+                        if (RENDER_DISTANCE || frontback || areacolor)
+                        {
+                            gl.Enable(OpenGL.GL_LIGHTING);
+                        }
 
                         if (RENDER_FLAT)
                         {
@@ -282,6 +305,37 @@ namespace BZ1GeoEditor
                             lastUV = curUV;
                         }
                         gl.End();
+                    }
+
+                    if (RENDER_NORM)
+                    {
+                        float x = 0.0f;
+                        float y = 0.0f;
+                        float z = 0.0f;
+                        for(int i = 0; i < face.Wireframe.Length; i++)
+                        {
+                            x += geo.vecs[face.Wireframe[i].VertexId].x;
+                            y += geo.vecs[face.Wireframe[i].VertexId].y;
+                            z += geo.vecs[face.Wireframe[i].VertexId].z;
+                        }
+
+                        x /= face.Wireframe.Length;
+                        y /= face.Wireframe.Length;
+                        z /= face.Wireframe.Length;
+
+                        gl.LineWidth(1.0f);
+                        gl.Disable(OpenGL.GL_TEXTURE_2D);
+                        gl.Disable(OpenGL.GL_LIGHTING);
+                        gl.Begin(OpenGL.GL_LINES);
+
+                        gl.Color((byte)0xff, (byte)0x00, (byte)0x00, (byte)0xff);
+                        gl.Vertex(x, y, -z);
+                        gl.Vertex(x - face.Plane.SurfaceNormal.x * 0.5, y - face.Plane.SurfaceNormal.y * 0.5, -z + face.Plane.SurfaceNormal.z * 0.5);
+
+                        gl.End();
+                        gl.Enable(OpenGL.GL_TEXTURE_2D);
+                        gl.Enable(OpenGL.GL_LIGHTING);
+                        gl.LineWidth(1.0f);
                     }
 
                     if (HighlightColor)
@@ -408,6 +462,7 @@ namespace BZ1GeoEditor
         {
             Special_Back_Front,
             FaceArea,
+            Distance,
             Wire,
             Solid,
             Color,
@@ -567,6 +622,7 @@ namespace BZ1GeoEditor
                             curRenderStyle = RenderStyle.Texture;
                         }
                         cbRender.Enabled = true;
+                        cbNorms.Enabled = true;
 
                         txtName.Text = geo.header.Name_STR;
                         txtName.Enabled = true;
@@ -916,6 +972,9 @@ namespace BZ1GeoEditor
                     break;
                 case "Special: Area":
                     curRenderStyle = RenderStyle.FaceArea;
+                    break;
+                case "Special: Distance":
+                    curRenderStyle = RenderStyle.Distance;
                     break;
                 case "Wire":
                     curRenderStyle = RenderStyle.Wire;
@@ -1605,10 +1664,12 @@ namespace BZ1GeoEditor
         {
             SelectedUVs.Clear();
 
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Middle)
             {
                 if (lstFacesUV.SelectedIndex > -1)
                 {
+                    UVdX = 0;
+                    UVdY = 0;
                     if (pbTextureUV.Image != null)
                     {
                         int w = pbTextureUV.Image.Width / 3;
@@ -1629,6 +1690,12 @@ namespace BZ1GeoEditor
                                 }
                             }
                         }
+
+                        if (e.Button == MouseButtons.Middle && SelectedUVs.Count > 0)
+                        {
+                            SelectedUVs = new List<FaceNode>() { SelectedUVs.OrderBy(node => Math.Abs(node.u - UVStartX) + Math.Abs(node.v - UVStartY)).First() };
+                        }
+
                         DraggingUV = true;
                         tmrUV.Start();
                     }
@@ -1644,7 +1711,7 @@ namespace BZ1GeoEditor
 
         private void pbTextureUV_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Middle)
             {
                 if (SelectedUVs.Count > 0)
                 {
@@ -1689,7 +1756,7 @@ namespace BZ1GeoEditor
 
         private void pbTextureUV_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Middle)
             {
                 if (SelectedUVs.Count > 0)
                 {
@@ -1747,6 +1814,8 @@ namespace BZ1GeoEditor
                         break;
                     case Keys.A:
                         Cursor.Position = new Point(Cursor.Position.X - 1, Cursor.Position.Y);
+                        break;
+                    case Keys.Control:
                         break;
                     default:
                         break;
